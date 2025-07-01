@@ -4,7 +4,7 @@ import psycopg
 import bcrypt
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=["https://istock.netlify.app"])
 
 def get_connexion():
     return psycopg.connect(
@@ -355,5 +355,12 @@ def get_stats():
     })
 
 
+# ✅ ✅ CORRECTION POUR RENDER
+import os
+
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=True
+    )
